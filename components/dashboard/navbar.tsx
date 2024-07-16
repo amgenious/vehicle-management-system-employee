@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { SignOutButton } from "@clerk/nextjs";
 import {
     Car,
     ClipboardPenLine,
@@ -91,12 +92,14 @@ const NavBar= () => {
             </Link>
           </nav>
           <div className="mt-auto">
-          <Button>
+          <SignOutButton>
+            <Button>
                 <LogOut />
                 <p className='ml-3'>
                 Logout
                 </p>
             </Button>
+           </SignOutButton>
           </div>
         </SheetContent>
       </Sheet>

@@ -3,6 +3,7 @@ import { Button } from '../ui/button'
 import { LogOut } from 'lucide-react'
 import UserProfile from '../sidebar/userprofile'
 import SideBarLinks from '../sidebar/sidebarlinks'
+import { SignOutButton } from "@clerk/nextjs";
 
 const SideBar = () => {
   return (
@@ -11,12 +12,14 @@ const SideBar = () => {
        <UserProfile />
        <SideBarLinks />
        <div className='w-[100%] py-5 flex justify-center'>
-       <Button>
-           <LogOut />
-           <p className='ml-3'>
-           Logout
-           </p>
-       </Button>
+       <SignOutButton>
+            <Button>
+                <LogOut />
+                <p className='ml-3'>
+                Logout
+                </p>
+            </Button>
+           </SignOutButton>
        </div>
     </div>
 </div>
