@@ -75,11 +75,11 @@ const GetAllPendingBookings = () => {
                          data?.length > 0 && loading==false ?  (
                             data.map((item:any) => (
                                 <TableRow key={item.id} className=''>
-                                    <TableCell className="font-medium">{item.data.Job_number}</TableCell>
-                                    <TableCell>{item.data.status}</TableCell>
-                                    <TableCell>{item.data.name}</TableCell>
-                                    <TableCell>{item.data.phonenumber}</TableCell>
-                                    <TableCell>{item.data.carnumber}</TableCell>
+                                    <TableCell className="font-medium">{item.Job_number}</TableCell>
+                                    <TableCell>{item.status}</TableCell>
+                                    <TableCell>{item.name}</TableCell>
+                                    <TableCell>{item.phonenumber}</TableCell>
+                                    <TableCell>{item.carnumber}</TableCell>
                                     <TableCell className='bg-primary text-white text-center font-bold'>
                                         <Link href={`dashboard/createservicereport/${item.id}`}>
                                             Details

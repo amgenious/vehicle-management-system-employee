@@ -21,9 +21,10 @@ interface CreateServiceReportProps {
     reportingtime:string
     id:string,
     jobnumber:string
+    employeeEmail:any
   }
 
-const CreateServiceReport:React.FC<CreateServiceReportProps> = ({ name, phonenumber,carnumber,model,fault,reportingtime,jobnumber,id }) => {
+const CreateServiceReport:React.FC<CreateServiceReportProps> = ({ name, phonenumber,carnumber,model,fault,reportingtime,jobnumber,id,employeeEmail }) => {
     const [remarks, setRemarks] = useState("");
 
     const handleSubmit = async (e:any) => {
@@ -46,6 +47,7 @@ const CreateServiceReport:React.FC<CreateServiceReportProps> = ({ name, phonenum
           Job_number:jobnumber,
           remarks:remarks,
           timeStamps: serverTimestamp(), 
+          EmployeeEmail:employeeEmail
           })
           onSubmit()
           alert("Service Report Created")

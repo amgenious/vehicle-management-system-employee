@@ -9,11 +9,14 @@ import {
   where,
 } from "firebase/firestore";
 import { Loader } from "lucide-react";
+import { useUser } from '@clerk/clerk-react';
 
 const GetallTrackedCars = () => {
+  const {user}=useUser()
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const colRef = collection(db, "servicetracker");
+  let me:any
   type Timestamp = {
     seconds: number;
     nanoseconds: number;
@@ -43,7 +46,7 @@ const GetallTrackedCars = () => {
         setLoading(false);
         console.error('Error fetching data:', error);
     }
-}, []);
+}, [ me =user?.primaryEmailAddress?.emailAddress]);
 const formatDate = (timestamp: Timestamp): string => {
   const date = new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000);
   return date.toUTCString(); // or use any other format you prefer

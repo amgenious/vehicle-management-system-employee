@@ -10,39 +10,49 @@ import {
     where,
 } from "firebase/firestore";
 import { Loader } from 'lucide-react';
-// import { currentUser } from '@clerk/nextjs/server';
+import { useUser } from '@clerk/clerk-react';
 
 const GetAllServiceReports = () => {
-  // const user = await currentUser();
-  // const useremail = user?.primaryEmailAddress?.emailAddress
+  const {user}=useUser()
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const colRef = collection(db, "customerservicereport");
+  let me:any
+ 
   useEffect(() => {
-    try {
-        const q1 = query(
-            colRef,
-            where("email","==","henrytweneboah956@gmail.com"),
-        );
-        const unsubscribeSnapshot = onSnapshot(q1, (snapShot) => {
-            setLoading(true);
-            setData([]);
-            let list:any= [];
-            snapShot.docs.forEach((doc) => {
-              list.push({ id: doc.id, ...doc.data() });
-            });
-            setData(list);
-            setLoading(false);
-        });
-        return () => {
-            unsubscribeSnapshot();
-        };
-
-    } catch (error) {
-        setLoading(false);
-        console.error('Error fetching data:', error);
+    const fetchData = async () => {
+    await getItems()
     }
-}, []);
+    fetchData();
+}, [
+  me =user?.primaryEmailAddress?.emailAddress
+]);
+const getItems = async()=>{
+  try {
+    const q1 = query(
+  
+        colRef,
+        where("EmployeeEmail","==",me),
+    );
+    const unsubscribeSnapshot = onSnapshot(q1, (snapShot) => {
+        setLoading(true);
+        setData([]);
+        let list:any= [];
+        snapShot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setData(list);
+        setLoading(false);
+    });
+    return () => {
+        unsubscribeSnapshot();
+    };
+
+} catch (error) {
+    setLoading(false);
+    console.error('Error fetching data:', error);
+}
+}
   return (
     <div className='p-3'>
     <p className='text-xl font-medium'>A list of all Services Reports.</p>

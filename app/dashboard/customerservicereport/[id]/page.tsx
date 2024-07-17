@@ -7,6 +7,7 @@ import {
 import { Loader } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import { addDoc, collection, serverTimestamp,doc, updateDoc} from "firebase/firestore";
+import Invoiceforms from '@/components/dashboard/createinvoice/invoiceforms';
 
 const ServiceReportDetails = ({params}:any) => {
     const ids = params.id
@@ -55,7 +56,7 @@ const GetBookingById = async () => {
       Client_name:data?.name,
       Phone_number:data?.phonenumber,
       Service_date:data?.timeStamps,
-      employeeEmail:data?.email,
+      employeeEmail:data?.EmployeeEmail,
       Next_Service_date:newDateString,
       timeStamps: serverTimestamp(), 
       })
@@ -72,13 +73,11 @@ const GetBookingById = async () => {
     <div className='p-3 h-fit flex flex-col gap-5'>
       <div className='w-full flex justify-between'>
         <Button onClick={CreateServiceTracker}>Generate its Service Tracker</Button>
-        <Button>Create its invoice</Button>
+       <Invoiceforms 
+       ide={ids} 
+       employeeEmail={data?.EmployeeEmail}       
+       />
       </div>
-        {/* <div>
-         <CreateServiceReport name={data?.data.name} phonenumber={data?.data.phonenumber} carnumber={data?.data.carnumber} model={data?.data.model} 
-         fault={data?.data.faultdescription} reportingtime={data?.data.reportingtime} id={ids} jobnumber={data?.data.Job_number}       
-         />
-        </div> */}
     {
         loading ? (
             <Loader size={40} className="animate-spin ml-2 text-primary text-center" />
@@ -93,7 +92,7 @@ const GetBookingById = async () => {
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Client Phone Number: {data?.phonenumber}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Client Name: {data?.name}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Reported Time: {data?.reportingtime}</p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Employee Email: {data?.email}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Employee Email: {data?.EmployeeEmail}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Fault: {data?.faultdescription} </p>
             <p className='font-semibold text-black mb-2 p-2 '>Employee Servicing Report: {data?.remarks} </p>
             </div>

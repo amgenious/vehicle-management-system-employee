@@ -1,5 +1,4 @@
 'use client'
-
 import { car } from '@/public/images'
 import Image from 'next/image'
 import React,{useState,useEffect} from 'react'
@@ -9,21 +8,29 @@ import {
     ,doc
 } from "firebase/firestore";
 import { Loader } from 'lucide-react'
+import { useUser } from '@clerk/clerk-react';
+
 import CreateServiceReport from '@/components/dashboard/customerservicereport/createservicereport'
 
 const ClientBookingsDetails = ({params}:any) => {
+  const [data, setData] = useState<DocumentData>({});
+  const [loading, setLoading] = useState(true);
+  const ids = params.id
+  const {user}=useUser()
+
     interface DocumentData{
-        name?: string;
+        name?: any;
         status?: string;
-        phonenumber?: string;
-        carnumber?: string;
+        phonenumber?: any;
+        carnumber?: any;
         [key: string]: any;
     }
-    const [data, setData] = useState<DocumentData>({});
-    const [loading, setLoading] = useState(true);
-    const ids = params.id
     useEffect(() => {
-        GetBookingById()
+      const fetchData = async () => {
+        await GetBookingById();
+      };
+      fetchData();
+        
     }, []);
     const GetBookingById = async () => {
         setLoading(true);
@@ -49,9 +56,16 @@ const ClientBookingsDetails = ({params}:any) => {
     </div>
     <div className='p-3 h-fit flex flex-col gap-5'>
         <div>
-         <CreateServiceReport name={data?.data.name} phonenumber={data?.data.phonenumber} carnumber={data?.data.carnumber} model={data?.data.model} 
-         fault={data?.data.faultdescription} reportingtime={data?.data.reportingtime} id={ids} jobnumber={data?.data.Job_number}       
-         />
+         <CreateServiceReport 
+            name={data.name}
+            phonenumber={data.phonenumber}
+            carnumber={data.carnumber}
+            model={data.model}
+            fault={data.faultdescription}
+            reportingtime={data.reportingtime}
+            id={ids}
+            jobnumber={data.Job_number} 
+            employeeEmail={user?.primaryEmailAddress?.emailAddress}         />
         </div>
     {
         loading ? (
@@ -62,21 +76,22 @@ const ClientBookingsDetails = ({params}:any) => {
         <div className='w-[50%] flex flex-col items-center p-5 bg-white rounded-md'>
             <div className='w-32 h-32 bg-primary rounded-full mb-3'></div>
             <div className='border border-primary w- w-full'>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Full Name: {data?.data.name} </p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Phone Number: {data?.data.phonenumber}</p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Reporting Time: {data?.data.reportingtime}</p>
-            <p className='font-semibold text-black mb-2 p-1'>Job Number: {data?.data.Job_number} </p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Full Name: {data?.name} </p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Phone Number: {data?.phonenumber}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Email: {data?.email}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Reporting Time: {data?.reportingtime}</p>
+            <p className='font-semibold text-black mb-2 p-1'>Job Number: {data?.Job_number} </p>
             </div>
         </div>
         <div className='w-[50%] flex flex-col items-center p-5 bg-white rounded-md'>
             <Image src={car} alt='car' className='w-32 h-32 mb-3' priority/>
             <div className='border border-primary w- w-full'>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Manufacturer: {data?.data.manufacturer}</p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Model {data?.data.model}</p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Vehicle Registration Number: {data?.data.carnumber}</p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Mileage: {data?.data.mileage}</p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary uppercase'>Chassis Number: {data?.data.chassisnumber}</p>
-            <p className='font-semibold text-black mb-2 p-1'>Fault Description: {data?.data.faultdescription}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Manufacturer: {data?.manufacturer}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Model {data?.model}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Vehicle Registration Number: {data?.carnumber}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Mileage: {data?.mileage}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary uppercase'>Chassis Number: {data?.chassisnumber}</p>
+            <p className='font-semibold text-black mb-2 p-1'>Fault Description: {data?.faultdescription}</p>
             </div>
         </div>
      </div>
