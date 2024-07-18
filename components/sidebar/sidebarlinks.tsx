@@ -8,7 +8,8 @@ import {
     Package,
     ClipboardPenLine,
     Car,
-    Pen
+    Pen,
+    MonitorCheck
   } from "lucide-react"
 
 const SideBarLinks = () => {
@@ -75,6 +76,18 @@ const SideBarLinks = () => {
       >
         <Car className="h-4 w-4" />
         Track Serviced Cars
+      </Link>
+      <Link
+        href="/dashboard/costsharing"
+        className={clsx("flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all",
+        {
+          'bg-primary text-white text-muted': pathname === "/dashboard/costsharing",
+        },
+        ) 
+        }
+      >
+        <MonitorCheck className="h-4 w-4" />
+        Cost Sharing Created
       </Link>
     </nav>
   </div>

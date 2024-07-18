@@ -60,6 +60,7 @@ const formatDate = (timestamp: Timestamp): string => {
     <TableHead>Client Name</TableHead>
     <TableHead>Job Number</TableHead>
     <TableHead>Phone Number</TableHead>
+    <TableHead>Vehicle Registration Number</TableHead>
     <TableHead>Serviced Date</TableHead>
     <TableHead>Next Service Date</TableHead>
   </TableRow>
@@ -73,6 +74,7 @@ const formatDate = (timestamp: Timestamp): string => {
                 {item.Job_number}
               </TableCell>
               <TableCell>{item.Phone_number}</TableCell>
+              <TableCell>{item.Vehicle_Registration_number}</TableCell>
               <TableCell>{formatDate(item.Service_date)}</TableCell>
               <TableCell>{item.Next_Service_date}</TableCell>
             </TableRow>))

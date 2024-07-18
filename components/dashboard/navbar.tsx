@@ -80,6 +80,18 @@ const NavBar= () => {
               Invoices Created
             </Link>
             <Link
+              href="/dashboard/costsharing"
+              className={clsx(
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",
+                {
+                  "bg-primary text-secondary text-mute ": pathname === "/dashboard/costsharing",
+                }
+              )}
+            >
+              <ClipboardPenLine className="h-4 w-4" />
+              Cost Sharing Created
+            </Link>
+            <Link
               href="/dashboard/trackservicedcars"
               className={clsx(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",

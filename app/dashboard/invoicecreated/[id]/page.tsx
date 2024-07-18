@@ -17,6 +17,7 @@ import {
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { logo } from '@/public/images';
+import CreateCostSharing from '@/components/dashboard/costsharing/createcostsharing';
 
 
 const InvoiceDetails = ({params}:any) => {
@@ -57,9 +58,24 @@ const InvoiceDetails = ({params}:any) => {
     
   return (
     <div  className='flex flex-col flex-1 h-full w-full bg-slate-100'>
-      <div className='w-full p-3 h-fit bg-white'>
+      <div className='w-full flex justify-between p-3 h-fit bg-white'>
+        <div>
         <p className='text-primary text-3xl font-black'>Invoice Details</p>
         <p className='font-medium text-xs italic'>Details about the Invoice</p>
+        </div>
+        <div>
+          <CreateCostSharing 
+          name={data.Client_name} 
+          carnumber={data.Vehicle_Registration_Number} 
+          jobnumber={data.Job_number} 
+          item={data.Parts_used} 
+          quantity={data.Quantity} 
+          retailprice={data.Unit_Price} 
+          totalbill={data.Net_Price}
+          labour={data.Labour} 
+          employeeEmail={data.EmployeeEmail}          
+          />
+        </div>
     </div>
     {
         loading ? (
@@ -101,6 +117,7 @@ const InvoiceDetails = ({params}:any) => {
             <TableHead>Parts Used</TableHead>
             <TableHead>Quantity</TableHead>
             <TableHead>Unit Price</TableHead>
+            <TableHead>Labour</TableHead>
             <TableHead>Net Price</TableHead>
             <TableHead>Manager</TableHead>
            
@@ -111,6 +128,7 @@ const InvoiceDetails = ({params}:any) => {
                 <TableCell>{data.Parts_used}</TableCell>
                 <TableCell>{data.Quantity}</TableCell>
                 <TableCell>{data.Unit_Price}</TableCell>
+                <TableCell>{data.Labour}</TableCell>
                 <TableCell>{data.Net_Price}</TableCell>
                 <TableCell>{data.manager}</TableCell>
               </TableRow>

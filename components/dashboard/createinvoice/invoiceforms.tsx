@@ -39,6 +39,7 @@ const Invoiceforms:React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
     const [quantity, setQuantity] = useState("");
     const [unit_price, setUnitPrice] = useState("");
     const [net_price, setNetPrice] = useState("");
+    const [labour, setLabour] = useState("");
     const [data, setData] = useState<DocumentData>({});
     const [loading, setLoading] = useState(true);
     const GetBookingById = async () => {
@@ -66,7 +67,6 @@ const Invoiceforms:React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
        let fault = data?.faultdescription
        let Clientname= data?.name
        let Employeeremarks= data?.remarks
-       console.log(data?.Job_number)
             try{
                 await addDoc(collection(db,"invoice"),{
                     manager:manager,
@@ -76,6 +76,7 @@ const Invoiceforms:React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
                     Quantity:quantity,
                     Unit_Price:unit_price,
                     Net_Price:net_price,
+                    Labour:labour,
                     Job_number:jobnumber,
                     Client_name:Clientname,
                     Vehicle_Registration_Number:carnumner,
@@ -117,6 +118,10 @@ const Invoiceforms:React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
         <div>
        <p>Unit Price</p>
         <Input className="col-span-3 p-2" type='number' onChange={(e)=> setUnitPrice(e.target.value)} required />
+        </div>
+        <div>
+       <p>Labour</p>
+        <Input className="col-span-3 p-2" type='number' onChange={(e)=> setLabour(e.target.value)} required />
         </div>
         <div>
        <p>Net Price</p>

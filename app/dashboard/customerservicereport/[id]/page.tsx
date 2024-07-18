@@ -48,13 +48,14 @@ const GetBookingById = async () => {
       date.setDate(date.getDate() + days);
       return date.toUTCString();
     }
-    const newDateString = addDaysToTimestamp(data?.timeStamps, 30);
+    const newDateString = addDaysToTimestamp(data?.timeStamps, 90);
    
     try{
       await addDoc(collection(db,"servicetracker"),{
       Job_number:data?.Job_number,
       Client_name:data?.name,
       Phone_number:data?.phonenumber,
+      Vehicle_Registration_number:data?.carnumber,
       Service_date:data?.timeStamps,
       employeeEmail:data?.EmployeeEmail,
       Next_Service_date:newDateString,
