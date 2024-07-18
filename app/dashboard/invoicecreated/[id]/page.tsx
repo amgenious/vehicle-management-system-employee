@@ -15,6 +15,8 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import { logo } from '@/public/images';
 
 
 const InvoiceDetails = ({params}:any) => {
@@ -64,6 +66,19 @@ const InvoiceDetails = ({params}:any) => {
             <Loader size={40} className="animate-spin ml-2 text-primary text-center" />
         ):(
     <div className='p-5 mt-5 bg-white'>
+      <div className='w-full flex justify-center items-center p-5 gap-5'>
+        <div>
+          <Image src={logo} alt='logo'/>
+        </div>
+        <div>
+          <h1 className='text-4xl font-bold'>CCTU VEHICLE SERVICE CENTER</h1>
+          <p className=''>Email: <u className='cursor-pointer font-semibold'>avic.center@cctu.edu.gh</u></p>
+          <div className='mt-5'>
+            <p>P.O.BOX DL 50 CAPE COST C/R GHANA</p>
+            <p className='font-semibold'>TEL: 0509687271/0537929495</p>
+          </div>
+        </div>
+      </div>
       <h1 className='text-3xl font-bold'>Cash Invoice</h1>
       <div className='w-full flex justify-between mt-3'>
           <div>

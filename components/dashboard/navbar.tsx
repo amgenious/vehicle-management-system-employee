@@ -15,11 +15,13 @@ import {
     Pen,
   } from "lucide-react";
   import Link from "next/link";
+import Image from 'next/image';
+import { logo } from '@/public/images';
 
 const NavBar= () => {
     const pathname = usePathname();
   return (
-    <header className="shrink-0 md:hidden flex h-14 items-center gap-4 border-b bg-primary px-4 lg:h-[60px] lg:px-6">
+    <header className=" flex h-14 items-center gap-4 border-b bg-primary px-4 lg:h-[60px] lg:px-6">
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -103,8 +105,13 @@ const NavBar= () => {
           </div>
         </SheetContent>
       </Sheet>
-      <div className="w-full flex-1">
+      <div className='w-full flex gap-2 justify-center items-center'>
+        <Image src={logo} alt='logo'
+        className='w-12 h-12'
+        />
+        <p className='text-center font-bold text-xl text-black'>AVIC-CCTU MANAGEMENT SYSTEM - Employee Section</p>
       </div>
+      
     </header>
   )
 }
