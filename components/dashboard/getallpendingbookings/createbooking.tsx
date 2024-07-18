@@ -69,7 +69,7 @@ const CreateBooking = () => {
         Create a new booking for a job
       </SheetDescription>
     </SheetHeader>
-    <div className="grid gap-4 py-4">
+    <div className="grid gap-4 py-4 overflow-y-scroll">
       <div className="flex flex-col gap-4">
       <input className="border-black border-2 rounded-sm p-2" placeholder="Full Name" onChange={(e)=> setName(e.target.value)} />
           <input className="border-black border-2 rounded-sm p-2" placeholder="Phone Number" onChange={(e)=> setPhoneNumber(e.target.value)}/>
