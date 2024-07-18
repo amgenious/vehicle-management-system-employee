@@ -70,7 +70,7 @@ const GetallBookings = () => {
                 <TableCell>{item.phonenumber}</TableCell>
                 <TableCell>{item.carnumber}</TableCell>
                 <TableCell className="bg-primary text-white text-center font-bold">
-                  <Link href={`dashboard/createservicereport/${item.id}`}>
+                  <Link href={`createservicereport/${item.id}`}>
                     Details
                   </Link>
                 </TableCell>
