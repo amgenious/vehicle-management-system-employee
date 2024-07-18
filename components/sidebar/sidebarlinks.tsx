@@ -75,7 +75,7 @@ const SideBarLinks = () => {
         }
       >
         <Car className="h-4 w-4" />
-        Track Serviced Cars
+        Service Tracker
       </Link>
       <Link
         href="/dashboard/costsharing"
