@@ -70,8 +70,8 @@ const GetallBookings = () => {
                 <TableCell>{item.status}</TableCell>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.phonenumber}</TableCell>
-                <TableCell>{item.carnumber}</TableCell>
                 <TableCell>{item.mileage}</TableCell>
+                <TableCell>{item.carnumber}</TableCell>
                 
                 <TableCell className="bg-primary text-white text-center font-bold">
                   <Link href={`createservicereport/${item.id}`}>
