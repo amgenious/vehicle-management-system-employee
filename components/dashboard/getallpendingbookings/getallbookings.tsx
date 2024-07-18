@@ -54,6 +54,8 @@ const GetallBookings = () => {
             <TableHead>Status</TableHead>
             <TableHead>Client Name</TableHead>
             <TableHead>Phone Number</TableHead>
+            <TableHead>Mileage</TableHead>
+            <TableHead>Chassis Number</TableHead>
             <TableHead>Vehicle Registration Number</TableHead>
             <TableHead className="text-center">More Details</TableHead>
           </TableRow>
@@ -69,6 +71,8 @@ const GetallBookings = () => {
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.phonenumber}</TableCell>
                 <TableCell>{item.carnumber}</TableCell>
+                <TableCell>{item.mileage}</TableCell>
+                <TableCell>{item.chassisnumber}</TableCell>
                 <TableCell className="bg-primary text-white text-center font-bold">
                   <Link href={`createservicereport/${item.id}`}>
                     Details

@@ -22,6 +22,8 @@ const CreateBooking = () => {
     const [email, setEmail] = useState("");
     const [manufacturer, setManufacturer] = useState("");
     const [model, setModel] = useState("");
+    const [mileage, setMileage] = useState("");
+    const [chassisnumber, setChassisNumber] = useState("");
     const [dateofbooking, setDateofbooking] = useState("");
     const [reportingtime, setReportingTime] = useState("");
     const [faultdescription, setFaultDescription] = useState("");
@@ -75,6 +77,8 @@ const CreateBooking = () => {
           <input className="border-black border-2 rounded-sm p-2" placeholder="Vehicle Registration Number" onChange={(e)=> setCarNumber(e.target.value)}/>
           <input className="border-black border-2 rounded-sm p-2" placeholder="Manufacturer"onChange={(e)=> setManufacturer(e.target.value)} />
           <input className="border-black border-2 rounded-sm p-2" placeholder="Model" onChange={(e)=> setModel(e.target.value)}/>
+          <input className="border-black border-2 rounded-sm p-2" placeholder="Mileage" onChange={(e)=> setMileage(e.target.value)}/>
+          <input className="border-black border-2 rounded-sm p-2" placeholder="Chassis Number" onChange={(e)=> setChassisNumber(e.target.value)}/>
           <input className="border-black border-2 rounded-sm p-2" placeholder="Date of Booking" type="date" onChange={(e)=> setDateofbooking(e.target.value)}/>
           <input className="border-black border-2 rounded-sm p-2" placeholder="Reporting Time" type="time"  onChange={(e)=> setReportingTime(e.target.value)}/>
           <textarea className="border-black border-2 rounded-sm p-2" placeholder="Fault Description" onChange={(e)=> setFaultDescription(e.target.value)}></textarea>
