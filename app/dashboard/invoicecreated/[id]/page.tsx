@@ -63,7 +63,7 @@ const InvoiceDetails = ({params}:any) => {
         <p className='text-primary text-3xl font-black'>Invoice Details</p>
         <p className='font-medium text-xs italic'>Details about the Invoice</p>
         </div>
-        <div>
+        <div className='hidden md:block'>
           <CreateCostSharing 
           name={data.Client_name} 
           carnumber={data.Vehicle_Registration_Number} 
