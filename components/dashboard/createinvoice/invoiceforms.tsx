@@ -11,7 +11,7 @@ import {
     SheetTrigger,
   } from "@/components/ui/sheet"
 
-import { addDoc, collection, serverTimestamp,doc, updateDoc, getDoc} from "firebase/firestore";
+import { addDoc, collection, serverTimestamp,doc, getDoc} from "firebase/firestore";
 import { db } from '@/lib/firebaseConfig';
 import { Input } from '@/components/ui/input';
 import { Loader } from 'lucide-react';
@@ -37,9 +37,9 @@ const Invoiceforms:React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
     const [manager, setManager] = useState("");
     const [parts_used, setPartsUsed] = useState("");
     const [quantity, setQuantity] = useState("");
-    const [unit_price, setUnitPrice] = useState("");
-    const [net_price, setNetPrice] = useState("");
-    const [labour, setLabour] = useState("");
+    const [unit_price, setUnitPrice] = useState<number>(0);
+    const [net_price, setNetPrice] = useState<number>(0);
+    const [labour, setLabour] = useState<number>(0);
     const [data, setData] = useState<DocumentData>({});
     const [loading, setLoading] = useState(true);
     const GetBookingById = async () => {
@@ -61,6 +61,9 @@ const Invoiceforms:React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
         setLoading(false);
       };
    
+useEffect(()=>{
+   setNetPrice(unit_price + labour);
+},[unit_price,labour])
     const handleSubmit = async()=>{
        let jobnumber = data?.Job_number
        let carnumner = data?.carnumber
@@ -117,15 +120,15 @@ const Invoiceforms:React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
         </div>
         <div>
        <p>Unit Price</p>
-        <Input className="col-span-3 p-2" type='number' onChange={(e)=> setUnitPrice(e.target.value)} required />
+        <Input className="col-span-3 p-2" type='number'  value={unit_price} onChange={(e)=> setUnitPrice(parseFloat(e.target.value))} required />
         </div>
         <div>
        <p>Labour</p>
-        <Input className="col-span-3 p-2" type='number' onChange={(e)=> setLabour(e.target.value)} required />
+        <Input className="col-span-3 p-2" type='number'  value={labour} onChange={(e)=> setLabour(parseFloat(e.target.value))} required />
         </div>
         <div>
        <p>Net Price</p>
-        <Input className="col-span-3 p-2" type='number' onChange={(e)=> setNetPrice(e.target.value)} required />
+        <div className="col-span-3 p-2">{net_price}</div>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import {
   query,
   onSnapshot,
   where,
+  orderBy,
 } from "firebase/firestore";
 import { Loader } from "lucide-react";
 import { useUser } from '@clerk/clerk-react';
@@ -26,6 +27,7 @@ const GetallTrackedCars = () => {
         const q1 = query(
             colRef,
             where("employeeEmail","==",me),
+            orderBy("timeStamps","desc")
         );
         const unsubscribeSnapshot = onSnapshot(q1, (snapShot) => {
             setLoading(true);

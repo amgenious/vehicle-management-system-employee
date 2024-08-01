@@ -14,7 +14,7 @@ import {
   collection,
   query,
   onSnapshot,
-  where,
+  where,orderBy
 } from "firebase/firestore";
 import { Loader } from "lucide-react";
 
@@ -24,7 +24,7 @@ const GetallBookings = () => {
   const colRef = collection(db, "bookings");
   useEffect(() => {
     try {
-      const q1 = query(colRef, where("status", "==", "Pending"));
+      const q1 = query(colRef, where("status", "==", "Pending"),orderBy("timeStamps","desc"));
       const unsubscribeSnapshot = onSnapshot(q1, (snapShot) => {
         setLoading(true);
         setData([]);
@@ -33,7 +33,6 @@ const GetallBookings = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
-        console.log(list);
         setLoading(false);
       });
       return () => {
@@ -55,7 +54,7 @@ const GetallBookings = () => {
             <TableHead>Client Name</TableHead>
             <TableHead>Phone Number</TableHead>
             <TableHead>Mileage</TableHead>
-            
+            <TableHead>Chassis Number</TableHead>
             <TableHead>Vehicle Registration Number</TableHead>
             <TableHead className="text-center">More Details</TableHead>
           </TableRow>
@@ -71,8 +70,8 @@ const GetallBookings = () => {
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{item.phonenumber}</TableCell>
                 <TableCell>{item.mileage}</TableCell>
+                <TableCell>{item.chassisnumber}</TableCell>
                 <TableCell>{item.carnumber}</TableCell>
-                
                 <TableCell className="bg-primary text-white text-center font-bold">
                   <Link href={`createservicereport/${item.id}`}>
                     Details

@@ -89,13 +89,17 @@ const GetBookingById = async () => {
             <div className='border border-primary w- w-full'>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'> Job Number: {data?.Job_number} </p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Vehicle Registration Number: {data?.carnumber}</p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Model: {data?.model}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Model: {data?.makemodel}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Client Phone Number: {data?.phonenumber}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Client Name: {data?.name}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Reported Time: {data?.reportingtime}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Employee Email: {data?.EmployeeEmail}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Fault: {data?.faultdescription} </p>
-            <p className='font-semibold text-black mb-2 p-2 '>Employee Servicing Report: {data?.remarks} </p>
+            <p className='font-semibold text-black mb-2 p-2 '>Employee Servicing Report: <ul>
+                {data.remarks.map((remark: { id: React.Key | null | undefined; value: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }) => (
+                  <li key={remark.id}>{remark.value}</li>
+                ))}
+              </ul> </p>
             </div>
         </div>
      </div>

@@ -29,6 +29,7 @@ const CreateCostSharing:React.FC<CreateCostSharingProps> = ({
     name,carnumber,jobnumber,item,quantity,retailprice,totalbill,employeeEmail,labour
 }) => {
     const [rikpat, setRikpat] = useState("");
+    const [otherservices, setOtherServices] = useState("");
     const [cctu, setCCTU] = useState("");
     const [blater, setBlater] = useState("");
     const [date, setDate] = useState("");
@@ -44,6 +45,7 @@ const CreateCostSharing:React.FC<CreateCostSharingProps> = ({
         Labour:labour,
         item:item,
         quantity:quantity,
+        otherservices:otherservices,
         rikpat:rikpat,
         retailprice:retailprice,
         totalbill:totalbill,
@@ -74,6 +76,7 @@ const CreateCostSharing:React.FC<CreateCostSharingProps> = ({
     </SheetHeader>
     <div className="grid gap-4 py-4">
       <div className="flex flex-col gap-4">
+      <input className="border-black border-2 rounded-sm p-2" placeholder="Other Services" onChange={(e)=> setOtherServices(e.target.value)}/>
       <input className="border-black border-2 rounded-sm p-2" placeholder="Rikpat" onChange={(e)=> setRikpat(e.target.value)}/>
       <input className="border-black border-2 rounded-sm p-2" placeholder="CCTU" onChange={(e)=> setCCTU(e.target.value)}/>
       <input className="border-black border-2 rounded-sm p-2" placeholder="Mr.Benedict Blater" onChange={(e)=> setBlater(e.target.value)}/>

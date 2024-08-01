@@ -8,6 +8,7 @@ import {
     query,
     onSnapshot,
     where,
+    orderBy,
 } from "firebase/firestore";
 import { Loader } from 'lucide-react';
 import { useUser } from '@clerk/clerk-react';
@@ -32,6 +33,7 @@ const getItems = async()=>{
     const q1 = query(
         colRef,
         where("EmployeeEmail","==",me),
+        orderBy("timeStamps","desc")
     );
     const unsubscribeSnapshot = onSnapshot(q1, (snapShot) => {
         setLoading(true);
@@ -41,6 +43,7 @@ const getItems = async()=>{
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
+        console.log(list)
         setLoading(false);
     });
     return () => {
@@ -78,7 +81,11 @@ const getItems = async()=>{
               <TableCell>{item.phonenumber}</TableCell>
               <TableCell>{item.carnumber}</TableCell>
               <TableCell>{item.faultdescription}</TableCell>
-              <TableCell>{item.remarks}</TableCell>
+              <TableCell>  <ul>
+                {item.remarks.map((remark: { id: React.Key | null | undefined; value: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }) => (
+                  <li key={remark.id}>{remark.value}</li>
+                ))}
+              </ul></TableCell>
               <TableCell className="bg-primary text-white text-center font-bold">
                 <Link href={`customerservicereport/${item.id}`}>
                   Details

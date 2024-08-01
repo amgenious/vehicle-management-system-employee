@@ -15,6 +15,7 @@ import {
   query,
   onSnapshot,
   where,
+  orderBy,
 } from "firebase/firestore";
 import { Loader } from "lucide-react";
 
@@ -37,6 +38,7 @@ const GetallCostSharing = () => {
         const q1 = query(
             colRef,
             where("employeeEmail","==",me),
+            orderBy("timeStamps","desc")
             
         );
         const unsubscribeSnapshot = onSnapshot(q1, (snapShot) => {
@@ -73,6 +75,7 @@ const GetallCostSharing = () => {
     <TableHead>Item</TableHead>
     <TableHead>Quantity</TableHead>
     <TableHead>Rikpat(Distribution Price)</TableHead>
+    <TableHead>Other Services</TableHead>
     <TableHead>Retail Price</TableHead>
     <TableHead>Total Bill</TableHead>
     <TableHead>CCTU</TableHead>
@@ -92,6 +95,7 @@ const GetallCostSharing = () => {
               <TableCell>{item.item}</TableCell>
               <TableCell>{item.quantity}</TableCell>
               <TableCell>{item.rikpat}</TableCell>
+              <TableCell>{item.otherservices}</TableCell>
               <TableCell>{item.retailprice}</TableCell>
               <TableCell>{item.totalbill}</TableCell>
               <TableCell>{item.CCTU}</TableCell>

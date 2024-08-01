@@ -7,7 +7,7 @@ import {
     getDoc
     ,doc
 } from "firebase/firestore";
-import { Loader } from 'lucide-react'
+import { Loader, User } from 'lucide-react'
 import { useUser } from '@clerk/clerk-react';
 
 import CreateServiceReport from '@/components/dashboard/customerservicereport/createservicereport'
@@ -60,11 +60,12 @@ const ClientBookingsDetails = ({params}:any) => {
             name={data.name}
             phonenumber={data.phonenumber}
             carnumber={data.carnumber}
-            model={data.model}
+            makemodel={data.makemodel}
             fault={data.faultdescription}
             reportingtime={data.reportingtime}
             id={ids}
             jobnumber={data.Job_number} 
+            chassisnumber={data.chassisnumber}
             employeeEmail={user?.primaryEmailAddress?.emailAddress}         />
         </div>
     {
@@ -74,7 +75,9 @@ const ClientBookingsDetails = ({params}:any) => {
 
      <div className='h-full flex gap-5'>
         <div className='w-[50%] flex flex-col items-center p-5 bg-white rounded-md'>
-            <div className='w-32 h-32 bg-primary rounded-full mb-3'></div>
+            <div className='w-32 h-32 bg-primary rounded-full mb-3 flex justify-center items-center'>
+              <User className='text-white w-20 h-20'  />
+            </div>
             <div className='border border-primary w- w-full'>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Full Name: {data?.name} </p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Phone Number: {data?.phonenumber}</p>
@@ -86,11 +89,10 @@ const ClientBookingsDetails = ({params}:any) => {
         <div className='w-[50%] flex flex-col items-center p-5 bg-white rounded-md'>
             <Image src={car} alt='car' className='w-32 h-32 mb-3' priority/>
             <div className='border border-primary w- w-full'>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Manufacturer: {data?.manufacturer}</p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Model {data?.model}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Model & Make: {data?.makemodel}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Vehicle Registration Number: {data?.carnumber}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Mileage: {data?.mileage}</p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary uppercase'>Chassis Number: {data?.chassisnumber}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Chassis Number: <span className='uppercase'>{data?.chassisnumber}</span> </p>
             <p className='font-semibold text-black mb-2 p-1'>Fault Description: {data?.faultdescription}</p>
             </div>
         </div>

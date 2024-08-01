@@ -8,6 +8,7 @@ import {
   query,
   onSnapshot,
   where,
+  orderBy,
 } from "firebase/firestore";
 import { Loader } from "lucide-react";
 import { useUser } from '@clerk/clerk-react';
@@ -20,7 +21,7 @@ const GetallInvoices = () => {
   let me:any
   useEffect(() => {
     try {
-      const q1 = query(colRef, where("EmployeeEmail","==",me));
+      const q1 = query(colRef, where("EmployeeEmail","==",me),orderBy("timeStamps","desc"));
       const unsubscribeSnapshot = onSnapshot(q1, (snapShot) => {
         setLoading(true);
         setData([]);
@@ -64,7 +65,13 @@ const GetallInvoices = () => {
                 <TableCell>{item.Client_name}</TableCell>
                 <TableCell>{item.Vehicle_Registration_Number}</TableCell>
                 <TableCell>{item.fault}</TableCell>
-                <TableCell>{item.Employeeremarks}</TableCell>
+                <TableCell>
+                <ul>
+                {item.Employeeremarks.map((remark: { id: React.Key | null | undefined; value: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }) => (
+                  <li key={remark.id}>{remark.value}</li>
+                ))}
+              </ul>
+                </TableCell>
                 <TableCell>{item.Net_Price}</TableCell>
                 <TableCell className="bg-primary text-white text-center font-bold">
                   <Link href={`invoicecreated/${item.id}`}>

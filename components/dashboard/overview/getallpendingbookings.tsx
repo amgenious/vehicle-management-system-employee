@@ -17,6 +17,7 @@ import {
     onSnapshot,
     limit,
     where,
+    orderBy,
 } from "firebase/firestore";
 import { Loader } from 'lucide-react';
 
@@ -32,6 +33,7 @@ const GetAllPendingBookings = () => {
             const q1 = query(
                 colRef,
                 where("status","==","Pending"),
+                orderBy("timeStamps","desc"),
                 limit(5)
             );
             const unsubscribeSnapshot = onSnapshot(q1, (snapShot) => {
