@@ -102,6 +102,7 @@ const InvoiceDetails = ({params}:any) => {
             remarks={data.Employeeremarks}
             totalbill={data.Net_Price}
             labour={data.Labour}
+            discount={data.discount}
             employeeEmail={data.EmployeeEmail}           />
         </div>
     </div>
