@@ -112,7 +112,7 @@ const InvoiceDetails = ({params}:any) => {
             <Loader size={40} className="animate-spin ml-2 text-primary text-center" />
         ):(
     <div className='p-5 mt-5 bg-white'>
-      <div className='w-full flex justify-start items-center p-5 gap-5'>
+      <div className='w-full flex justify-start items-center p-1 gap-5'>
         <div>
           <Image src={logo} alt='logo' priority/>
         </div>
@@ -127,22 +127,21 @@ const InvoiceDetails = ({params}:any) => {
       </div>
       <h1 className='text-3xl font-bold uppercase'>Cash Invoice</h1>
       <div className='w-full flex justify-between mt-3'>
-          <div>
-            <p className='font-bold'>Customer Name and Address</p>
-            <p className='font-semibold'> {data.Client_name}</p>
-            <p className='font-semibold'> P.O.BOX <span className='uppercase'>CCTU</span></p>
-            <p className='font-semibold'> Tel <span> 
+          <div className='border border-primary w-[50%]'>
+            <p className='font-bold  border-b border-primary p-1'>Customer Name and Address</p>
+            <p className='font-medium border-b border-primary p-1'>Client Name: <span className='font-bold'>{data.Client_name}</span></p>
+            <p className='font-medium border-primary border-b p-1'> Tel <span className='font-bold'> 
               {rdata.map((item: any) => (
                 item.phonenumber
               ))}
               </span></p>
           </div>
-          <div>
-            <p className='font-semibold'>Date: <span className='font-bold'>{ String(Date()).slice(0,15)}</span></p>
-            <p className='font-semibold'>JOB No: <span className='font-bold'>{data.Job_number}</span></p>
-            <p className='font-semibold'>Car No: <span className='font-bold'>{data.Vehicle_Registration_Number}</span></p>
-            <p className='font-semibold'>Employee Email: <span className='font-bold'>{data.EmployeeEmail}</span></p>
-            <p className='font-semibold'>Manager: <span className='font-bold'>{data.manager}</span></p>
+          <div  className='border border-primary w-[50%]'>
+            <p className='font-medium border-b border-primary p-1'>Date: <span className='font-bold'>{ String(Date()).slice(0,15)}</span></p>
+            <p className='font-medium border-b border-primary p-1'>JOB No: <span className='font-bold'>{data.Job_number}</span></p>
+            <p className='font-medium border-b border-primary p-1'>Car No: <span className='font-bold'>{data.Vehicle_Registration_Number}</span></p>
+            <p className='font-medium border-b border-primary p-1'>Employee Email: <span className='font-bold'>{data.EmployeeEmail}</span></p>
+            <p className='font-medium  p-1'>Manager: <span className='font-bold'>{data.manager}</span></p>
           </div>
       </div>
       <div className='mt-3 flex flex-col gap-3'>
@@ -160,29 +159,54 @@ const InvoiceDetails = ({params}:any) => {
             <TableHead>Parts Used</TableHead>
             <TableHead>Quantity</TableHead>
             <TableHead>Unit Price (Ghc)</TableHead>
-            <TableHead>Labour (Ghc)</TableHead>
-            <TableHead>Net Price (Ghc)</TableHead>
+            <TableHead className='text-end'>Net Price (Ghc)</TableHead>
            
           </TableRow>
         </TableHeader>
         <TableBody>
-              <TableRow>
-                <TableCell>{data.Parts_used}</TableCell>
-                <TableCell>{data.Quantity}</TableCell>
-                <TableCell>{data.Unit_Price}</TableCell>
-                <TableCell>{data.Labour}</TableCell>
-                <TableCell>{data.Net_Price}</TableCell>
+                {data.Employeeremarks.map((remark: { id: React.Key | null | undefined; value: string | number | bigint | boolean; parts_used:string; quantity:number;unit_price:number;net_price:number| React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }) => (
+              <TableRow key={remark.id}>
+                <TableCell>{data.Parts_used}
+                   <li className='font-semibold'>{remark.parts_used}</li>
+              </TableCell>
+                <TableCell>{remark.quantity}</TableCell>
+                <TableCell>{remark.unit_price}</TableCell>
+                <TableCell className='font-semibold text-end'>{remark.net_price}</TableCell>
               </TableRow>
+                ))}
         </TableBody>
       </Table>
-      </div>
-       {/* <p className='font-normal'>Employee Remarks: 
-            <ul>
+      <Table>
+        <TableHeader>
+          <TableRow className='bg-primary'>
+            <TableHead className='text-center text-white'>Description of Job</TableHead>
+            <TableHead className='text-end text-white'>Labour (Ghc)</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className='text-center'><ul>
                 {data.Employeeremarks.map((remark: { id: React.Key | null | undefined; value: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }) => (
                   <li className='font-semibold' key={remark.id}>{remark.value}</li>
                 ))}
-              </ul>
-            </p> */}
+              </ul></TableCell>
+            <TableCell className='text-end font-bold'>{data.Labour}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      <Table>
+        <TableHeader>
+          <TableRow className='bg-primary'>
+            <TableHead className='text-end font-black text-white'>Total Net Price (Ghc)</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className='text-end font-black'>{data.Net_Price}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      </div>
     </div>
       )
     }
