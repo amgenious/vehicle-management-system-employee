@@ -17,16 +17,14 @@ interface CreateCostSharingProps {
     name: string;
     carnumber:string,
     jobnumber:string,
-    item:string,
-    quantity:any,
-    retailprice:any,
+    remarks:any,
     totalbill:any,
     labour:any,
     employeeEmail:any
   }
 
 const CreateCostSharing:React.FC<CreateCostSharingProps> = ({
-    name,carnumber,jobnumber,item,quantity,retailprice,totalbill,employeeEmail,labour
+    name,carnumber,jobnumber,totalbill,employeeEmail,labour,remarks
 }) => {
     const [rikpat, setRikpat] = useState("");
     const [otherservices, setOtherServices] = useState("");
@@ -43,12 +41,10 @@ const CreateCostSharing:React.FC<CreateCostSharingProps> = ({
         vehicle_registration_number:carnumber,
         Job_number:jobnumber,
         Labour:labour,
-        item:item,
-        quantity:quantity,
         otherservices:otherservices,
         rikpat:rikpat,
-        retailprice:retailprice,
         totalbill:totalbill,
+        remarks:remarks,
         CCTU:cctu,
         employeeEmail: employeeEmail,
         Mr_Benedict_Blater:blater,

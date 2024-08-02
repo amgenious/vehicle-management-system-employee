@@ -19,7 +19,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import Image from 'next/image';
-import { logo } from '@/public/images';
+import { car, logo } from '@/public/images';
 import CreateCostSharing from '@/components/dashboard/costsharing/createcostsharing';
 
 
@@ -87,24 +87,22 @@ const InvoiceDetails = ({params}:any) => {
       }
     }, [pdata]);
   return (
-    <div  className='flex flex-col flex-1 h-full w-full bg-slate-100'>
-      <div className='w-full flex justify-between p-3 h-fit bg-white'>
-        <div>
+    <div  className='flex flex-col flex-1 h-full w-full bg-slate-100 over'>
+      <div className='absolute bg-white h-[3.6rem] w-[102.5rem] top-0'></div>
+      <div className='w-full justify-between p-3 h-fit bg-white hidden md:flex'>
+        <div className=''>
         <p className='text-primary text-3xl font-black'>Invoice Details</p>
         <p className='font-medium text-xs italic'>Details about the Invoice</p>
         </div>
         <div className='hidden md:block'>
           <CreateCostSharing 
-          name={data.Client_name} 
-          carnumber={data.Vehicle_Registration_Number} 
-          jobnumber={data.Job_number} 
-          item={data.Parts_used} 
-          quantity={data.Quantity} 
-          retailprice={data.Unit_Price} 
-          totalbill={data.Net_Price}
-          labour={data.Labour} 
-          employeeEmail={data.EmployeeEmail}          
-          />
+            name={data.Client_name}
+            carnumber={data.Vehicle_Registration_Number}
+            jobnumber={data.Job_number}
+            remarks={data.Employeeremarks}
+            totalbill={data.Net_Price}
+            labour={data.Labour}
+            employeeEmail={data.EmployeeEmail}           />
         </div>
     </div>
     {
@@ -112,14 +110,14 @@ const InvoiceDetails = ({params}:any) => {
             <Loader size={40} className="animate-spin ml-2 text-primary text-center" />
         ):(
     <div className='p-5 mt-5 bg-white'>
-      <div className='w-full flex justify-start items-center p-1 gap-5'>
+      <div className='w-full flex justify-start items-start p-1 gap-5 mb-3'>
         <div>
-          <Image src={logo} alt='logo' priority/>
+          <Image src={logo} alt='logo' className='w-20 h-20' priority/>
         </div>
         <div>
-          <h1 className='text-4xl font-bold'>CCTU VEHICLE SERVICE CENTER</h1>
+          <h1 className='text-2xl font-bold'>CCTU VEHICLE SERVICE CENTER</h1>
           <p className=''>Email: <u className='cursor-pointer font-semibold'>avic.center@cctu.edu.gh</u></p>
-          <div className='mt-5'>
+          <div className='mt-2'>
             <p>P.O.BOX DL 50 CAPE COST C/R GHANA</p>
             <p className='font-semibold'>TEL: 0509687271/0537929495</p>
           </div>
@@ -140,7 +138,6 @@ const InvoiceDetails = ({params}:any) => {
             <p className='font-medium border-b border-primary p-1'>Date: <span className='font-bold'>{ String(Date()).slice(0,15)}</span></p>
             <p className='font-medium border-b border-primary p-1'>JOB No: <span className='font-bold'>{data.Job_number}</span></p>
             <p className='font-medium border-b border-primary p-1'>Car No: <span className='font-bold'>{data.Vehicle_Registration_Number}</span></p>
-            <p className='font-medium border-b border-primary p-1'>Employee Email: <span className='font-bold'>{data.EmployeeEmail}</span></p>
             <p className='font-medium  p-1'>Manager: <span className='font-bold'>{data.manager}</span></p>
           </div>
       </div>
@@ -197,6 +194,18 @@ const InvoiceDetails = ({params}:any) => {
       <Table>
         <TableHeader>
           <TableRow className='bg-primary'>
+            <TableHead className='text-end text-white'>Discount %</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className='text-end font-bold'>{data.discount}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      <Table>
+        <TableHeader>
+          <TableRow className='bg-primary'>
             <TableHead className='text-end font-black text-white'>Total Net Price (Ghc)</TableHead>
           </TableRow>
         </TableHeader>
@@ -210,6 +219,13 @@ const InvoiceDetails = ({params}:any) => {
     </div>
       )
     }
+    <div className='bg-white'>
+    <Image src={car} alt='car' className='w-20 h-20 ' priority/>
+    <div className='flex flex-col justify-center items-center'>
+      <p className='uppercase font-bold text-xl'>Manager</p>
+      <p className='p-1 bg-yellow-300 w-full text-center'>Where exceptional service meets unbeatable value!</p>
+    </div>
+    </div>
       </div>
   )
 }

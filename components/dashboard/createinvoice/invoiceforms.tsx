@@ -50,6 +50,7 @@ const Invoiceforms: React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
 
   const [manager, setManager] = useState("");
   const [labour, setLabour] = useState<number>(0);
+  const [discount, setDiscount] = useState<number>(0);
   const [data, setData] = useState<DocumentData>({ remarks: [] });
   const [loading, setLoading] = useState(true);
 
@@ -95,7 +96,11 @@ const Invoiceforms: React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
     const remarksNetPrice = (data.remarks || []).reduce((total, remark) => total + (remark.net_price || 0), 0);
     return remarksNetPrice + labour
   };
-
+const calculateDiscount = () =>{
+  const ni = (100-discount) 
+ return (ni/100*calculateTotalNetPrice())
+}
+console.log(calculateDiscount())
   const handleSubmit = async () => {
     let jobnumber = data?.Job_number;
     let carnumner = data?.carnumber;
@@ -109,7 +114,8 @@ const Invoiceforms: React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
         EmployeeEmail: employeeEmail,
         Employeeremarks: Employeeremarks,
         Labour: labour,
-        Net_Price:calculateTotalNetPrice(),
+        Net_Price:calculateDiscount(),
+        discount:discount,
         Job_number: jobnumber,
         Client_name: Clientname,
         Vehicle_Registration_Number: carnumner,
@@ -123,7 +129,7 @@ const Invoiceforms: React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
   };
 
   return (
-    <div className='border-2 border-red-500'>
+    <div>
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="default">Create Invoice</Button>
@@ -172,8 +178,12 @@ const Invoiceforms: React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
                 <Input className="col-span-3 p-2" type='number' value={labour} onChange={(e) => setLabour(parseFloat(e.target.value))} required />
               </div>
               <div>
+                <p>Discount</p>
+                <Input className="col-span-3 p-2" type='number' value={discount} onChange={(e) => setDiscount(parseFloat(e.target.value))} required />
+              </div>
+              <div>
                 <p>Total Net Price</p>
-                <div className="col-span-3 p-2 font-bold">{calculateTotalNetPrice()}</div>
+                <div className="col-span-3 p-2 font-bold">{calculateDiscount()}</div>
               </div>
             </div>
           </div>
