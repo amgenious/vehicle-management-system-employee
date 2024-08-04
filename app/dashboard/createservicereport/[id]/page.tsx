@@ -1,5 +1,5 @@
 'use client'
-import { car } from '@/public/images'
+import { car1 } from '@/public/images'
 import Image from 'next/image'
 import React,{useState,useEffect} from 'react'
 import { db } from '@/lib/firebaseConfig'
@@ -87,7 +87,7 @@ const ClientBookingsDetails = ({params}:any) => {
             </div>
         </div>
         <div className='w-[50%] flex flex-col items-center p-5 bg-white rounded-md'>
-            <Image src={car} alt='car' className='w-32 h-32 mb-3' priority/>
+            <Image src={car1} alt='car' className='w-32 h-32 mb-3' priority/>
             <div className='border border-primary w- w-full'>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Model & Make: {data?.makemodel}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Vehicle Registration Number: {data?.carnumber}</p>
