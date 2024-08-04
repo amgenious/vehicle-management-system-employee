@@ -195,7 +195,7 @@ const InvoiceDetails = ({params}:any) => {
       <Table>
         <TableHeader>
           <TableRow className='bg-primary'>
-            <TableHead className='text-end text-white'>Discount %</TableHead>
+            <TableHead className='text-end text-white'>- Discount (Ghc)</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -221,10 +221,10 @@ const InvoiceDetails = ({params}:any) => {
       )
     }
     <div className='bg-white'>
-    <Image src={car} alt='car' className='w-20 h-20 ' priority/>
-    <div className='flex flex-col justify-center items-center'>
-      <p className='uppercase font-bold text-xl'>Manager</p>
-      <p className='p-1 bg-yellow-300 w-full text-center'>Where exceptional service meets unbeatable value!</p>
+    <Image src={car} alt='car' className='w-24 h-16' priority/>
+    <div className='flex flex-col justify-center'>
+      <p className='uppercase font-bold text-xl text-center'>Manager</p>
+      <p className='p-1 bg-yellow-300 w-[50%] text-center font-bold px-16'>Where exceptional service meets unbeatable value!</p>
     </div>
     </div>
       </div>

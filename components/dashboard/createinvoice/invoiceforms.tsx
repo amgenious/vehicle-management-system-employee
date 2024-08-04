@@ -97,8 +97,8 @@ const Invoiceforms: React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
     return remarksNetPrice + labour
   };
 const calculateDiscount = () =>{
-  const ni = (100-discount) 
- return (ni/100*calculateTotalNetPrice())
+  const ni = (calculateTotalNetPrice()-discount) 
+ return (ni)
 }
 console.log(calculateDiscount())
   const handleSubmit = async () => {
