@@ -50,6 +50,7 @@ const Invoiceforms: React.FC<InvoiceProps> = ({ ide, employeeEmail }) => {
 
   const [manager, setManager] = useState("");
   const [labour, setLabour] = useState<number>(0);
+  const [SA, setSA] = useState('');
   const [discount, setDiscount] = useState<number>(0);
   const [data, setData] = useState<DocumentData>({ remarks: [] });
   const [loading, setLoading] = useState(true);
@@ -120,6 +121,7 @@ console.log(calculateDiscount())
         Client_name: Clientname,
         Vehicle_Registration_Number: carnumner,
         fault: fault,
+        SA:SA,
         timeStamps: serverTimestamp(),
       });
       alert("Invoice Created");
@@ -184,6 +186,10 @@ console.log(calculateDiscount())
               <div>
                 <p>Total Net Price</p>
                 <div className="col-span-3 p-2 font-bold">{calculateDiscount()}</div>
+              </div>
+              <div>
+                <p>SA</p>
+                <Input className="col-span-3 p-2" type='text' value={SA} onChange={(e) => setSA(e.target.value)} required />
               </div>
             </div>
           </div>

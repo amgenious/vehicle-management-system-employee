@@ -134,6 +134,7 @@ const InvoiceDetails = ({params}:any) => {
                 item.phonenumber
               ))}
               </span></p>
+              <p className='font-medium border-b border-primary p-1'>SA: <span className='font-bold'>{data.SA}</span></p>
           </div>
           <div  className='border border-primary w-[50%]'>
             <p className='font-medium border-b border-primary p-1'>Date: <span className='font-bold'>{ String(Date()).slice(0,15)}</span></p>

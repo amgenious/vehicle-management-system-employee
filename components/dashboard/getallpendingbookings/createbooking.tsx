@@ -105,7 +105,7 @@ const CreateBooking = () => {
                   <div className="flex flex-col gap-1">
                     <input className="border-black border-2 rounded-sm p-2" placeholder="Full Name" onChange={(e) => setName(e.target.value)} />
                     <input className="border-black border-2 rounded-sm p-2" placeholder="Phone Number" onChange={(e) => setPhoneNumber(e.target.value)} />
-                    <input className="border-black border-2 rounded-sm p-2" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                    <input className="border-black border-2 rounded-sm p-2" placeholder="Address" onChange={(e) => setEmail(e.target.value)} />
                     <input className="border-black border-2 rounded-sm p-2" placeholder="Vehicle Registration Number" onChange={(e) => setCarNumber(e.target.value)} />
                     <input className="border-black border-2 rounded-sm p-2" placeholder="Make & Model" onChange={(e) => setMakeModel(e.target.value)} />
                     <input className="border-black border-2 rounded-sm p-2" placeholder="ChassisNumber" onChange={(e) => setChassisnumber(e.target.value)} />

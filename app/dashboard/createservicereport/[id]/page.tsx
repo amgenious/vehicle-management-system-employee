@@ -81,7 +81,7 @@ const ClientBookingsDetails = ({params}:any) => {
             <div className='border border-primary w- w-full'>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Full Name: {data?.name} </p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Phone Number: {data?.phonenumber}</p>
-            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Email: {data?.email}</p>
+            <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Address: {data?.email}</p>
             <p className='font-semibold text-black mb-2 p-2 border-b border-primary'>Reporting Time: {data?.reportingtime}</p>
             <p className='font-semibold text-black mb-2 p-1'>Job Number: {data?.Job_number} </p>
             </div>
